@@ -1,9 +1,6 @@
-// export default function fetchCountries(searchQuery) {
-//     return new Promise 
-// }
-fetch('https://restcountries.eu/rest/v2/name/ukraine?fullText=true')
-    .then(response => {
-    return response.json()
-    })
-    .then(result => { console.log(result); })
-    .catch(error=>{console.log(error);})
+const BASE_URL = 'https://restcountries.eu/rest/v2/name/'
+export default function fetchCountries(searchQuery) {
+    fetch(`${BASE_URL}${searchQuery}`)
+    .then(response => {return response.json()})
+    .then(data => { console.log(data); })
+    .catch(error=>{console.log(error);})}
