@@ -4,7 +4,7 @@ import countryCardTemplate from '../temp/countryCard.hbs'
 import listOfCountries from '../temp/listOfCountries.hbs'
 const debounce = require('lodash.debounce')
 const { error } = require('@pnotify/core');
-
+// import RENDER from './renderApp' //need to askMentor
 
 const inputSelector = document.querySelector('.js-input');
 const cardContainer = document.querySelector('.js-cardContainer');
@@ -37,7 +37,7 @@ function onInput() {
             })
             .then(data => {
                 if (data.length > 1 && data.length < 10) {
-                    renderList(data)
+                   renderList(data)
                 }
                 return data
             })
