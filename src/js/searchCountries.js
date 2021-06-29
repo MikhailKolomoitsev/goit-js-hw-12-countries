@@ -29,11 +29,11 @@ function clickOnCountry(e) {
 function onInput() {
     if (inputSelector.value.trim()) {
         fetchCountries(inputSelector.value)
-            .then(response => {
+            .then(data => {
                 if (data.length === 1) {
-                    renderCard(response)
+                    renderCard(data)
                 }
-                return response
+                return data
             })
             .then(data => {
                 if (data.length > 1 && data.length < 10) {
