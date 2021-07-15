@@ -1,5 +1,5 @@
 const BASE_URL = `https://restcountries.eu/rest/v2/name/`
-export default function fetchCountries(searchQuery) {
-   return fetch(`${BASE_URL}${searchQuery}`)
-        .then(response => { return response.json() })
+export default async function  fetchCountries(searchQuery) {
+        const response= await fetch(`${BASE_URL}${searchQuery}`)
+   return response.json()
 }
