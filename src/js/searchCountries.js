@@ -4,7 +4,7 @@ import countryCardTemplate from '../temp/countryCard.hbs'
 import listOfCountries from '../temp/listOfCountries.hbs'
 const debounce = require('lodash.debounce')
 const { error } = require('@pnotify/core');
-
+// import RENDER from './renderApp' //need to askMentor
 
 const inputSelector = document.querySelector('.js-input');
 const cardContainer = document.querySelector('.js-cardContainer');
@@ -26,34 +26,24 @@ function clickOnCountry(e) {
     }
 }
 
-function onInput() {
+async function onInput() {
     if (inputSelector.value.trim()) {
-        fetchCountries(inputSelector.value)
-            .then(data => {
+       const data=await fetchCountries(inputSelector.value)
+          
                 if (data.length === 1) {
                     renderCard(data)
                 }
-                return data
-            })
-            .then(data => {
-                if (data.length > 1 && data.length < 10) {
-                    renderList(data)
+                else if (data.length > 1 && data.length < 10) {
+                   renderList(data)
                 }
-                return data
-            })
-            .then(data => {
-                if (data.length >= 10) {
+               else if (data.length >= 10) {
                     error({ text: 'To many matches found. Please enter a more specific query!' })
                 }
-                return data
-            })
-            .then(data => {
-                if (data.status === 404) {
-                    error({ text: 'No matches found' })
-                    
-            }return
-        })
-    }
+               else if (data.status === 404) {
+                    error({ text: 'No matches found' })     
+            }
+        return
+        }
     else {
          cardContainer.innerHTML=''
     }
